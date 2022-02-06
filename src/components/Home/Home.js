@@ -5,8 +5,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Skill />
-        home
+        <Skill skill_status={2} />
       </div>
     );
   }
