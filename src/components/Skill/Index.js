@@ -5,10 +5,14 @@ import Loading from '../Loading/Loading';
 import NetworkError from '../Network/Network'
 
 class Index extends Component {
-  state = {
-    error: null,
-    isLoaded: false,
-    skills: [],
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      error: null,
+      isLoaded: false,
+      skills: [],
+    }
   }
 
   componentDidMount() {
@@ -18,7 +22,7 @@ class Index extends Component {
       data: {
         query: `
           query {
-            fetchSkillsByStatus(status: 0) {
+            fetchSkillsByStatus(status: ${this.props.skill_status}) {
               id
               title
               language {
