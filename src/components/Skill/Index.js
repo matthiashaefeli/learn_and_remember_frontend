@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import Skill from '../Skill/Skill';
 import Loading from '../Loading/Loading';
+import NetworkError from '../Network/Network'
 
 class Index extends Component {
   state = {
@@ -50,9 +51,9 @@ class Index extends Component {
   render() {
     const { error, isLoaded, skills } = this.state;
 
-    // if (error) {
-    //   return <NetworkError />
-    // }
+    if (error) {
+      return <NetworkError />
+    }
 
     if (!isLoaded) {
       return <Loading />
