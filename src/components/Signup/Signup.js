@@ -20,24 +20,27 @@ class Signup extends Component {
       <div>
         <form>
           <label>
-            <p>name</p>
+            <p>Name</p>
             <input
+              data-testid='name-input'
               name='name'
               type="text"
               onChange={this.handleInput.bind(this)}
             />
           </label>
           <label>
-            <p>email</p>
+            <p>Email</p>
             <input
+              data-testid='email-input'
               name='email'
-              type="text"
+              type="email"
               onChange={this.handleInput.bind(this)}
             />
           </label>
           <label>
             <p>Password</p>
             <input
+              data-testid='password-input'
               name='password'
               type="password"
               onChange={this.handleInput.bind(this)}
