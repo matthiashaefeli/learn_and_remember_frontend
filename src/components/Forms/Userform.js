@@ -22,7 +22,7 @@ class Userform extends Component {
     const { auth } = this.props
     if(auth === 'register') {
       AuthService.register(name, email, password)
-    } else if(auth == 'login') {
+    } else if(auth === 'login') {
       AuthService.login(name, email, password)
     }
     this.setState({name: '', email: '', password: ''})

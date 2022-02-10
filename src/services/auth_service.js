@@ -46,7 +46,7 @@ class AuthService {
       if(result.data.data.signInUser.authenticate.token) {
         localStorage.setItem('user', JSON.stringify(result.data.data.signInUser))
       }
-      // redirect to home with user access
+      window.location = '/'
     })
   }
   logout() {
