@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import AuthService from '../../services/auth_service';
 
 class Signup extends Component {
   state = {
@@ -15,32 +15,8 @@ class Signup extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { name, email, password } = this.state
-    axios({
-      url: 'http://localhost:3000/graphql',
-      method: 'post',
-      data: {
-        query: `
-          mutation {
-            addUser(input: { params: { name: "${name}", email: "${email}", password: "${password}" }}) {
-              authenticate {
-                token
-              }
-              user {
-                name
-                email
-              }
-            }
-          }
-        `
-      }
-    }).then((result) => {
-      this.setState({ name: '', email: '', password: '' })
-      const { token } = result.data.data.addUser.authenticate
-      const { name, email } = result.data.data.addUser.user
-      localStorage.setItem('token', token)
-      localStorage.setItem('name', name)
-      localStorage.setItem('email', email)
-    })
+    AuthService.register(name, email, password)
+    this.setState({name: '', email: '', password: ''})
   }
 
   render() {
