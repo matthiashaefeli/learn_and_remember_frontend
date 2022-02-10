@@ -22,6 +22,39 @@ class AuthService {
       (result.data.errors) ? alert(result.data.errors[0].message) : alert("Pleae check you email inbox, and verify email");
     })
   }
+  login(name, email, password) {
+    axios({
+      url: API_URL,
+      method: 'post',
+      data: {
+        query: `
+          mutation {
+            signInUser(input: { params: { name: "${name}", email: "${email}", password: "${password}" }}) {
+              authenticate {
+                token
+              }
+              user {
+                name
+                email
+                verified
+              }
+            }
+          }
+        `
+      }
+    }).then((result) => {
+      if(result.data.data.signInUser.authenticate.token) {
+        localStorage.setItem('user', JSON.stringify(result.data.data.signInUser))
+      }
+      // redirect to home with user access
+    })
+  }
+  logout() {
+    localStorage.removeItem('user');
+  }
+  getCurrentUser() {
+    return JSON.parse(localStorage.getItem('user'));
+  }
 }
 
 export default new AuthService();
