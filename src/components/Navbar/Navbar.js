@@ -34,15 +34,16 @@ class Navbar extends Component {
         {currentUser && (
           <>
             <Link to="/" onClick={this.logOut}>Logout</Link> |{" "}
-            <Link to="/">Home</Link>
           </>
         )}
         {!currentUser && (
           <>
             <Link to="/signin">Sign IN</Link> |{" "}
-            <Link to="/signup">Sign UP</Link>
+            <Link to="/signup">Sign UP</Link> |{" "}
           </>
         )}
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/skills">Skills</Link>
 
       </nav>
     </div>

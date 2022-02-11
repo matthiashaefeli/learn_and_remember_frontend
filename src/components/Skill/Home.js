@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Skill from './Index'
 
 class Home extends Component {
   render() {
     return (
       <div>
-        Home
+        <Skill skill_status={2} />
       </div>
     );
   }
