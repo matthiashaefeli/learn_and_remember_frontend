@@ -34,6 +34,7 @@ class Navbar extends Component {
         {currentUser && (
           <>
             <Link to="/" onClick={this.logOut}>Logout</Link> |{" "}
+            <Link to="/create_skill">New Skill</Link> |{" "}
           </>
         )}
         {!currentUser && (

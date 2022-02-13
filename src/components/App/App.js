@@ -8,6 +8,7 @@ import Home from '../Home/Home';
 import Signup from '../Signup/Signup';
 import Signin from '../Signin/Signin';
 import Skills from '../Skill/Home';
+import CreateSkill from '../Skill/CreateSkill';
 
 const App = () => {
   return(
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/skills" element={<Skills />} />
+        <Route path="/create_skill" element={<CreateSkill />} />
       </Routes>
     </>
   )
