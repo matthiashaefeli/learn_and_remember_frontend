@@ -1,24 +1,48 @@
 import React, { Component } from 'react';
-import AuthService from '../../services/auth_service';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 class SkillForm extends Component {
   constructor(props) {
     super(props);
 
+    this.statusOptions = [
+      { value: '0', label: 'draft'},
+      { value: '1', label: 'unpublished'},
+      { value: '2', label: 'published'}
+    ];
+
+    this.languageOptions = [
+      { value: '0', label: 'ruby' }
+    ]
+
     this.state = {
       title: '',
       language: '',
-      status: '',
+      status: '0',
       userId: ''
     }
   }
 
+  onStatusSelect = (e) => {
+    this.setState({
+      status: e.value
+    })
+  }
+
+  onLanguageSelect = (e) => {
+    this.setState({
+      language: e.value
+    })
+  }
+
   handleInput(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   handleSubmit(event) {
     event.preventDefault();
+    debugger;
     // const { title, language, status, userId } = this.state
     // const { create_or_update } = this.props
     // if(create_or_update === 'create') {
@@ -26,7 +50,7 @@ class SkillForm extends Component {
     // } else if(create_or_update === 'update') {
 
     // }
-    this.setState({title: '', language: '', status: '', userId: ''})
+    this.setState({title: '', language: '', status: 0, userId: ''})
   }
 
   render() {
@@ -38,29 +62,26 @@ class SkillForm extends Component {
             <input
               data-testid='title-input'
               name='title'
-              type="text"
+              type='text'
               onChange={this.handleInput.bind(this)}
               value={this.state.title}
             />
           </label>
           <label>
-            <p>Language</p>
-            <input
-              data-testid='language-input'
-              name='language'
-              type="text"
-              onChange={this.handleInput.bind(this)}
-              value={this.state.language}
+            <p>Status</p>
+            <Dropdown
+              options={this.statusOptions}
+              onChange={this.onStatusSelect}
+              value={this.state.status}
             />
           </label>
           <label>
-            <p>Status</p>
-            <input
-              data-testid='status-input'
-              name='status'
-              type="text"
-              onChange={this.handleInput.bind(this)}
-              value={this.state.status}
+            <p>language</p>
+            <Dropdown
+              id='language'
+              options={this.languageOptions}
+              onChange={this.onLanguageSelect}
+              value={this.state.language}
             />
           </label>
           <div>
