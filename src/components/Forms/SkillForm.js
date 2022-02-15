@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import Select from 'react-select';
+import LanguageService from '../../services/language_service';
 
 class SkillForm extends Component {
   constructor(props) {
@@ -20,19 +20,25 @@ class SkillForm extends Component {
       title: '',
       language: '',
       status: '0',
-      userId: ''
+      userId: '',
+      languageOptions: []
     }
+  }
+
+  componentDidMount() {
+    LanguageService.fetchLanguages()
+    this.setState({ languageOptions: LanguageService.getLanguages() })
   }
 
   onStatusSelect = (e) => {
     this.setState({
-      status: e.value
+      status: e
     })
   }
 
   onLanguageSelect = (e) => {
     this.setState({
-      language: e.value
+      language: e
     })
   }
 
@@ -42,7 +48,7 @@ class SkillForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    debugger;
+    // debugger;
     // const { title, language, status, userId } = this.state
     // const { create_or_update } = this.props
     // if(create_or_update === 'create') {
@@ -68,28 +74,31 @@ class SkillForm extends Component {
             />
           </label>
           <label>
+            <p>language</p>
+            <Select
+              value={this.state.language}
+              onChange={this.onLanguageSelect}
+              options={this.state.languageOptions}
+            />
+          </label>
+          <label>
             <p>Status</p>
-            <Dropdown
+            <Select
               options={this.statusOptions}
               onChange={this.onStatusSelect}
               value={this.state.status}
             />
           </label>
           <label>
-            <p>language</p>
-            <Dropdown
-              id='language'
-              options={this.languageOptions}
-              onChange={this.onLanguageSelect}
-              value={this.state.language}
-            />
+            <p>
+              <button
+                type="submit"
+                onClick={this.handleSubmit.bind(this)}
+              >
+                Submit
+              </button>
+            </p>
           </label>
-          <div>
-            <button
-              type="submit"
-              onClick={this.handleSubmit.bind(this)}
-            >Submit</button>
-          </div>
         </form>
       </div>
     );

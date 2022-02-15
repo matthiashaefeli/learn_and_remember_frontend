@@ -7,7 +7,7 @@ class Skill extends Component {
     return (
       <div>
           title: {title}
-          language: {language.name}
+          language: {language.label}
           user: {user.name}
       </div>
     );

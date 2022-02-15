@@ -26,7 +26,7 @@ class Index extends Component {
               id
               title
               language {
-                name
+                label
               }
               user {
                 name
