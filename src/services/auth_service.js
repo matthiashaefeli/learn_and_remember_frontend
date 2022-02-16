@@ -34,6 +34,7 @@ class AuthService {
                 token
               }
               user {
+                id
                 name
                 email
                 verified
@@ -54,6 +55,9 @@ class AuthService {
   }
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));
+  }
+  getCurrentUserId() {
+    return JSON.parse(localStorage.getItem('user')).user.id
   }
 }
 

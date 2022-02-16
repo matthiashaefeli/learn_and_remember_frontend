@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import LanguageService from '../../services/language_service';
+import AuthService from '../../services/auth_service';
+import SkillService from '../../services/skill_service';
 
 class SkillForm extends Component {
   constructor(props) {
@@ -20,14 +22,17 @@ class SkillForm extends Component {
       title: '',
       language: '',
       status: '0',
-      userId: '',
-      languageOptions: []
+      languageOptions: [],
+      user: {}
     }
   }
 
   componentDidMount() {
-    LanguageService.fetchLanguages()
-    this.setState({ languageOptions: LanguageService.getLanguages() })
+    LanguageService.fetchLanguages();
+    this.setState({
+      languageOptions: LanguageService.getLanguages(),
+      user: AuthService.getCurrentUser()
+    });
   }
 
   onStatusSelect = (e) => {
@@ -48,14 +53,15 @@ class SkillForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // debugger;
-    // const { title, language, status, userId } = this.state
-    // const { create_or_update } = this.props
-    // if(create_or_update === 'create') {
+    const { title, language, status, user } = this.state
+    const { authenticate } = user
+    const { create_or_update } = this.props
+    
+    if(create_or_update === 'create') {
+      SkillService.addSkill(authenticate.token, title, language, status)
+    } else if(create_or_update === 'update') {
 
-    // } else if(create_or_update === 'update') {
-
-    // }
+    }
     this.setState({title: '', language: '', status: 0, userId: ''})
   }
 
