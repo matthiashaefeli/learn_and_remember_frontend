@@ -14,8 +14,8 @@ class SkillService {
                 authenticate: { token: "${token}" },
                 params: {
                   title: "${title}",
-                  languageId: ${language},
-                  status: ${status} }
+                  language: "${language.label}",
+                  status: ${status.value} }
                 }
               ) {
               skill {
@@ -23,7 +23,7 @@ class SkillService {
                 title
                 status
                 language {
-                  name
+                  label
                 }
                 user {
                   name
