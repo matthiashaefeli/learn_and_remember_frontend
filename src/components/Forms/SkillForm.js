@@ -56,13 +56,15 @@ class SkillForm extends Component {
     const { title, language, status, user } = this.state
     const { authenticate } = user
     const { create_or_update } = this.props
-    
+
+    if(!title || !language || !status) {
+      return
+    }
     if(create_or_update === 'create') {
       SkillService.addSkill(authenticate.token, title, language, status)
     } else if(create_or_update === 'update') {
 
     }
-    this.setState({title: '', language: '', status: 0, userId: ''})
   }
 
   render() {
