@@ -36,8 +36,7 @@ class SkillService {
         `
       }
     }).then((result) => {
-      debugger;
-      // check result here and return something
+      (result.data.errors) ? alert(result.data.errors[0].message) : window.location = '/skills';
     })
   }
 }
