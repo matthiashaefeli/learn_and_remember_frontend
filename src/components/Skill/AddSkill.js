@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SkillForm from '../Forms/SkillForm';
 
-class CreateSkill extends Component {
+class AddSkill extends Component {
   render() {
     return (
       <div>
@@ -11,4 +11,4 @@ class CreateSkill extends Component {
   }
 }
 
-export default CreateSkill;
+export default AddSkill;

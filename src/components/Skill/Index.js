@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import Skill from '../Skill/Skill';
+import Skills from '../Skill/Skills';
 import Loading from '../Loading/Loading';
 import NetworkError from '../Network/Network'
 
@@ -22,7 +22,7 @@ class Index extends Component {
       data: {
         query: `
           query {
-            fetchSkillsByStatus(status: ${this.props.skill_status}) {
+            fetchSkillsByStatus(status: 2) {
               id
               title
               language {
@@ -66,7 +66,7 @@ class Index extends Component {
     return (
       <div>
         {skills.map(skill => (
-          <Skill key={skill.id} skill={skill} />
+          <Skills key={skill.id} skill={skill} />
         ))}
       </div>
     );
