@@ -1,11 +1,12 @@
 import axios from 'axios';
 const API_URL = 'http://localhost:3000/graphql';
+const METHOD = 'post';
 
 class SkillService {
   addSkill(token, title, language, status) {
     axios({
       url: API_URL,
-      method: 'post',
+      method: METHOD,
       data: {
         query: `
           mutation {
@@ -39,10 +40,10 @@ class SkillService {
       (result.data.errors) ? alert(result.data.errors[0].message) : window.location = '/skills';
     })
   }
-  fetchSkill = (id) => {
+  fetchSkill = (id, setSkill, setLanguage, setComments, setUser) => {
     axios({
-      url: 'http://localhost:3000/graphql',
-      method: 'post',
+      url: API_URL,
+      method: METHOD,
       data: {
         query: `
         query {
@@ -59,6 +60,7 @@ class SkillService {
               verified
             }
             comments {
+              id
               body
               user {
                 name
@@ -69,8 +71,10 @@ class SkillService {
         `
       }
     }).then((result) => {
-      console.log(result.data.data.fetchSkill)
-      // return result.data.data.fetchSkill.id
+      setSkill(result.data.data.fetchSkill)
+      setLanguage(result.data.data.fetchSkill.language)
+      setUser(result.data.data.fetchSkill.user)
+      setComments(result.data.data.fetchSkill.comments)
     })
   }
 }
