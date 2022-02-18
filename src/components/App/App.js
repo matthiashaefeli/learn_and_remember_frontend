@@ -7,8 +7,9 @@ import Navbar from '../Navbar/Navbar';
 import Home from '../Home/Home';
 import Signup from '../Signup/Signup';
 import Signin from '../Signin/Signin';
-import Skills from '../Skill/Home';
-import CreateSkill from '../Skill/CreateSkill';
+import Index from '../Skill/Index';
+import AddSkill from '../Skill/AddSkill';
+import Skill from '../Skill/Skill';
 
 const App = () => {
   return(
@@ -18,8 +19,9 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/skills" element={<Skills />} />
-        <Route path="/create_skill" element={<CreateSkill />} />
+        <Route path="/skills" element={<Index />} />
+        <Route path="/skills/:id" element={<Skill />} />
+        <Route path="/addSkill" element={<AddSkill />} />
       </Routes>
     </>
   )
