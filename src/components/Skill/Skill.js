@@ -6,27 +6,20 @@ import Comment from '../Comment/Index'
 
 const Skill = () => {
   const [skill, setSkill] = useState({});
-  const [language, setLanguage] = useState({});
-  const [user, setUser] = useState({});
-  const [comments, setComments] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
-    SkillService.fetchSkill(id, setSkill, setLanguage, setComments, setUser)
+    SkillService.fetchSkill(id, setSkill)
   }, []);
-
-  const { title, status } = skill
-  const { label } = language
-  const { name } = user
 
   return (
     <div>
-      <p>Title: {title}</p>
-      <p>Status: {status}</p>
-      <p>Language: {label}</p>
-      <p>User: {name}</p>
+      <p>Title: {skill?.title}</p>
+      <p>Status: {skill?.status}</p>
+      <p>Language: {skill?.language?.label}</p>
+      <p>User: {skill?.user?.name}</p>
       <p>Comments:</p>
-      {comments.map(comment => (
+      {skill?.comments?.map(comment => (
           <Comment key={comment.id} comment={comment} />
         ))}
     </div>

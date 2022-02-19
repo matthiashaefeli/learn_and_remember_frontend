@@ -40,7 +40,7 @@ class SkillService {
       (result.data.errors) ? alert(result.data.errors[0].message) : window.location = '/skills';
     })
   }
-  fetchSkill = (id, setSkill, setLanguage, setComments, setUser) => {
+  fetchSkill = (id, setSkill) => {
     axios({
       url: API_URL,
       method: METHOD,
@@ -72,9 +72,6 @@ class SkillService {
       }
     }).then((result) => {
       setSkill(result.data.data.fetchSkill)
-      setLanguage(result.data.data.fetchSkill.language)
-      setUser(result.data.data.fetchSkill.user)
-      setComments(result.data.data.fetchSkill.comments)
     })
   }
 }
