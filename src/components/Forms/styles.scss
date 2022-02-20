@@ -1,0 +1,26 @@
+.rich-text-form {
+  border: solid 1px grey;
+  width: 80vw;
+  padding: 2px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.is-active {
+  color: green;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.rich-text-editor {
+  border: solid 1px grey;
+}
