@@ -31,12 +31,6 @@ class Navbar extends Component {
           paddingBottom: "1rem"
         }}
       >
-        {currentUser && (
-          <>
-            <Link to="/" onClick={this.logOut}>Logout</Link> |{" "}
-            <Link to="/addSkill">New Skill</Link> |{" "}
-          </>
-        )}
         {!currentUser && (
           <>
             <Link to="/signin">Sign IN</Link> |{" "}
@@ -44,7 +38,13 @@ class Navbar extends Component {
           </>
         )}
         <Link to="/">Home</Link> |{" "}
-        <Link to="/skills">Skills</Link>
+        <Link to="/skills">Skills</Link> |{" "}
+        {currentUser && (
+          <>
+            <Link to="/" onClick={this.logOut}>Logout</Link> |{" "}
+            <Link to="/addSkill">New Skill</Link>
+          </>
+        )}
 
       </nav>
     </div>

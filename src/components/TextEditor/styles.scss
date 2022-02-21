@@ -4,9 +4,21 @@
 }
 
 .menu-bar-container {
+  display: flex;
+  flex-direction: column;
   padding: 2px;
-  button {
-    background-color: white;
+}
+
+.menu-bar-rows {
+  display: flex;
+  flex-direction: row;
+  div {
+    margin-right: 5px;
+    padding: 1px;
+  }
+  div:hover {
+    background-color: #E8E8E8;
+    cursor: pointer;
   }
 }
 
