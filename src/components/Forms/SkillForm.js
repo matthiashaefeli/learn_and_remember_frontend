@@ -3,6 +3,7 @@ import Select from 'react-select';
 import LanguageService from '../../services/language_service';
 import AuthService from '../../services/auth_service';
 import SkillService from '../../services/skill_service';
+import TextEditor from '../../components/TextEditor/TextEditor';
 
 class SkillForm extends Component {
   constructor(props) {
@@ -23,7 +24,8 @@ class SkillForm extends Component {
       language: '',
       status: '0',
       languageOptions: [],
-      user: {}
+      user: {},
+      text: ''
     }
   }
 
@@ -51,17 +53,24 @@ class SkillForm extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  handleTextInput(e) {
+    this.setState({
+      text: e
+    })
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     const { title, language, status, user } = this.state
     const { authenticate } = user
     const { create_or_update } = this.props
+    const body = escape(document.getElementsByClassName('ProseMirror')[0].innerHTML)
 
-    if(!title || !language || !status) {
+    if(!title || !language || !status || body === '<p><br class="ProseMirror-trailingBreak"></p>') {
       return
     }
     if(create_or_update === 'create') {
-      SkillService.addSkill(authenticate.token, title, language, status)
+      SkillService.addSkill(authenticate.token, title, language, status, body)
     } else if(create_or_update === 'update') {
 
     }
@@ -80,6 +89,10 @@ class SkillForm extends Component {
               onChange={this.handleInput.bind(this)}
               value={this.state.title}
             />
+          </label>
+          <label>
+            <p>Text</p>
+            <TextEditor />
           </label>
           <label>
             <p>language</p>

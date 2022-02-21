@@ -2,9 +2,7 @@ import React from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import MenuBar from './MenuBar';
-import Dropcursor from '@tiptap/extension-dropcursor'
 import Underline from '@tiptap/extension-underline'
-import Focus from '@tiptap/extension-underline'
 import Link from '@tiptap/extension-link'
 import './styles.scss';
 
@@ -13,9 +11,7 @@ export default () => {
   const editor = useEditor({
     extensions: [
       StarterKit,
-      Dropcursor,
       Underline,
-      Focus,
       Link,
     ],
     content: `
@@ -32,7 +28,7 @@ export default () => {
       <div className='rich-text-menu'>
         <MenuBar editor={editor} />
       </div>
-      <div class="element">
+      <div id="element">
         <EditorContent editor={editor} />
       </div>
     </div>
