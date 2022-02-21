@@ -1,0 +1,40 @@
+.rich-text-form {
+  border: solid 1px grey;
+  padding: 2px;
+}
+
+.menu-bar-container {
+  padding: 2px;
+  button {
+    background-color: white;
+  }
+}
+
+.is-active {
+  color: green;
+}
+
+.custom_bold {
+  font-weight: bold;
+}
+
+.custom_italic {
+  font-style: italic;
+}
+
+.custom_strike {
+  text-decoration: line-through;
+}
+
+.custom_underline {
+  text-decoration: underline;
+}
+
+.rich-text-editor {
+  border: solid 1px grey;
+}
+
+.ProseMirror {
+  border: solid 1px grey;
+  min-height: 4em;
+}
