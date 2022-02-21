@@ -16,6 +16,8 @@ const Skill = () => {
   return (
     <div>
       <p>Title: {skill?.title}</p>
+      <p>Text:</p>
+      <div dangerouslySetInnerHTML={{ __html: unescape(skill?.body) }} />
       <p>Status: {skill?.status}</p>
       <p>Language: {skill?.language?.label}</p>
       <p>User: {skill?.user?.name}</p>
