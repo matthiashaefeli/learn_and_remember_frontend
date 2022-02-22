@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import AuthService from '../../services/auth_service';
+import './styles.scss';
 
 class Navbar extends Component {
 
@@ -25,12 +26,7 @@ class Navbar extends Component {
     return (
       <div>
       <h1>Learn And Remember</h1>
-      <nav
-        style={{
-          borderBottom: "solid 1px",
-          paddingBottom: "1rem"
-        }}
-      >
+      <nav className='nav-bar-nav'>
         {!currentUser && (
           <>
             <Link to="/signin">Sign IN</Link> |{" "}
@@ -41,8 +37,8 @@ class Navbar extends Component {
         <Link to="/skills">Skills</Link> |{" "}
         {currentUser && (
           <>
-            <Link to="/" onClick={this.logOut}>Logout</Link> |{" "}
-            <Link to="/addSkill">New Skill</Link>
+            <Link to="/addSkill">New Skill</Link> |{" "}
+            <Link to="/" onClick={this.logOut}>Logout</Link>
           </>
         )}
 
