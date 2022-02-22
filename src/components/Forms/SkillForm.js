@@ -4,6 +4,7 @@ import LanguageService from '../../services/language_service';
 import AuthService from '../../services/auth_service';
 import SkillService from '../../services/skill_service';
 import TextEditor from '../../components/TextEditor/TextEditor';
+import './styles.scss';
 
 class SkillForm extends Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class SkillForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className='skill-form-container'>
         <form>
           <label>
             <p>Title</p>
@@ -88,6 +89,7 @@ class SkillForm extends Component {
               type='text'
               onChange={this.handleInput.bind(this)}
               value={this.state.title}
+              autoFocus='True'
             />
           </label>
           <label>
@@ -95,7 +97,7 @@ class SkillForm extends Component {
             <TextEditor />
           </label>
           <label>
-            <p>language</p>
+            <p>Language</p>
             <Select
               value={this.state.language}
               onChange={this.onLanguageSelect}

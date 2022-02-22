@@ -78,35 +78,35 @@ const MenuBar = ({ editor }) => {
         <div
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
           className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}>
-          h1
+          <b>h1</b>
         </div>
         <div
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
           className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}>
-          h2
+          <b>h2</b>
         </div>
         <div
           onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
           className={editor.isActive('heading', { level: 3 }) ? 'is-active' : ''}>
-          h3
+          <b>h3</b>
         </div>
         <div
           onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
           className={editor.isActive('heading', { level: 4 }) ? 'is-active' : ''}>
-          h4
+          <b>h4</b>
         </div>
         <div
           onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
           className={editor.isActive('heading', { level: 5 }) ? 'is-active' : ''}>
-          h5
+          <b>h5</b>
         </div>
         <div
           onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
           className={editor.isActive('heading', { level: 6 }) ? 'is-active' : ''}>
-          h6
+          <b>h6</b>
         </div>
         <div onClick={() => editor.chain().focus().setHorizontalRule().run()}>
-          horizontal line
+          <b>horizontal line</b>
         </div>
       </div>
       <div className='menu-bar-rows'>
