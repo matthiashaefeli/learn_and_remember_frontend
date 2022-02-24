@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import Skills from '../Skill/Skills';
 import Loading from '../Loading/Loading';
-import NetworkError from '../Network/Network'
+import NetworkError from '../Network/Network';
+import SkillService from '../../services/skill_service';
 
 class Index extends Component {
   constructor(props) {
@@ -12,44 +13,17 @@ class Index extends Component {
       error: null,
       isLoaded: false,
       skills: [],
+      page: 1
     }
   }
 
   componentDidMount() {
-    axios({
-      url: 'http://localhost:3000/graphql',
-      method: 'post',
-      data: {
-        query: `
-          query {
-            fetchSkillsByStatus(status: 2) {
-              id
-              title
-              language {
-                label
-              }
-              user {
-                name
-                email
-                verified
-              }
-              status
-            }
-          }
-        `
-      }
-    }).then((result) => {
-      this.setState({
-        isLoaded: true,
-        skills: result.data.data['fetchSkillsByStatus']
-      })
-    },
-    error => {
-      this.setState({
-        isLoaded: true,
-        error
-      })
-    });
+    SkillService.fetchSkillsByStatus(2, 1).then((response) => {
+        this.setState({
+          isLoaded: true,
+          skills: response
+        })
+    })
   }
 
   render() {

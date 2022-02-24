@@ -10,7 +10,9 @@ const Skill = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    SkillService.fetchSkill(id, setSkill)
+    SkillService.fetchSkill(id).then((response) => {
+      setSkill(response)
+    })
   }, []);
 
   return (
