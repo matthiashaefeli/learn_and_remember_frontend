@@ -90,6 +90,7 @@ class SkillForm extends Component {
               onChange={this.handleInput.bind(this)}
               value={this.state.title}
               autoFocus='True'
+              className='title-input'
             />
           </label>
           <label>

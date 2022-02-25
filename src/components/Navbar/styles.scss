@@ -1,4 +1,18 @@
-.nav-bar-nav {
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  width: 90vw;
+  justify-content: space-between;
+}
+
+.nav-title {
+  width: 60%;
+  height: 6em;
+}
+
+.nav-bar {
+  height: 6em;
+
   a {
     text-decoration: none;
     color: black;
