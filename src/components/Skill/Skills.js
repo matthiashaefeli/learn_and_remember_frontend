@@ -8,9 +8,7 @@ class Skill extends Component {
     return (
       <div className='skill-list-item'>
         <Link to={'/skills/' + id}>
-          title: {title}
-          language: {language.label}
-          user: {user.name}
+          {language.label}: {title}
         </Link>
       </div>
     );
