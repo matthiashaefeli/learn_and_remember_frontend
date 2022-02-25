@@ -4,6 +4,8 @@ import SkillService from '../../services/skill_service';
 import Comment from '../Comment/Index';
 import TextEditor from '../TextEditor/TextEditor';
 import './styles.scss';
+import AuthService from '../../services/auth_service';
+import CommentService from '../../services/comment_service';
 
 const Skill = () => {
   const [skill, setSkill] = useState({});
@@ -14,6 +16,12 @@ const Skill = () => {
       setSkill(response)
     })
   }, []);
+
+  function handleSubmit() {
+    const user = AuthService.getCurrentUser()
+    const body = escape(document.getElementsByClassName('ProseMirror')[0].innerHTML)
+    CommentService.addComment(user.authenticate.token, body, id)
+  }
 
   return (
     <div>
@@ -26,10 +34,16 @@ const Skill = () => {
       <p>Comments:</p>
       <div className='skill-comment-form'>
         <TextEditor />
+        <button
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
       </div>
       {skill?.comments?.map(comment => (
-          <Comment key={comment.id} comment={comment} />
-        ))}
+        <Comment key={comment.id} comment={comment} />
+      ))}
     </div>
   );
 };

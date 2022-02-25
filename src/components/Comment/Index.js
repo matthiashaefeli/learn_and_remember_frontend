@@ -5,7 +5,7 @@ class Index extends Component {
     const { body, user } = this.props.comment;
     return (
       <div>
-        <p>text: {body}</p>
+        <div dangerouslySetInnerHTML={{ __html: unescape(body) }} />
         <p>user: {user.name}</p>
       </div>
     );
