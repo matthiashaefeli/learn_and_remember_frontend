@@ -10,6 +10,7 @@ import Signin from '../Signin/Signin';
 import Index from '../Skill/Index';
 import AddSkill from '../Skill/AddSkill';
 import Skill from '../Skill/Skill';
+import User from '../User/Index';
 
 const App = () => {
   return(
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/skills" element={<Index />} />
         <Route path="/skills/:id" element={<Skill />} />
         <Route path="/addSkill" element={<AddSkill />} />
+        <Route path="/user" element={<User />} />
       </Routes>
     </>
   )

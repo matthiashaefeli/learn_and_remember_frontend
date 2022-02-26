@@ -36,10 +36,11 @@ class Navbar extends Component {
             </>
           )}
           <Link to="/"> Home |</Link>
-          <Link to="/skills"> Skills |</Link>
+          <Link to="/skills"> Public Skills |</Link>
           {currentUser && (
             <>
-              <Link to="/addSkill"> New Skill |</Link>
+              <Link to="/user"> {currentUser.user.name} Skills |</Link>
+              <Link to="/addSkill"> Add Skill |</Link>
               <Link to="/" onClick={this.logOut}> Logout</Link>
             </>
           )}
