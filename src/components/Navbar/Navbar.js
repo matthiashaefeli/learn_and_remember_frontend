@@ -36,7 +36,7 @@ class Navbar extends Component {
             </>
           )}
           <Link to="/"> Home |</Link>
-          <Link to="/skills"> Public Skills |</Link>
+          <Link to="/skills"> {currentUser ? 'Public Skills' : 'Skills'} |</Link>
           {currentUser && (
             <>
               <Link to="/user"> {currentUser.user.name} Skills |</Link>

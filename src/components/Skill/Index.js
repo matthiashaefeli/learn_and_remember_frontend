@@ -25,21 +25,23 @@ function Index () {
 
   return (
     <div>
-      {skills.map(skill => (
-        <Skills key={skill.id} skill={skill} />
-      ))}
       <div className='pagination-container'>
         {AuthService.getCurrentUser() && (
-          <div>
+          <div className='pagination-radio'>
             <input type="radio" value="1" name="skillStatus" checked={skillStatus === 1} onChange={onChange} /> Unpublished
             <input type="radio" value="2" name="skillStatus" checked={skillStatus === 2} onChange={onChange} /> Published
-        </div>
+          </div>
         )}
         <div className='pagination-arrow'>
           <button onClick={() => setPage(1)}>First Page</button>
           <button><FaLongArrowAltLeft onClick={() => {if(page>1) setPage(page - 1)}} /></button>
           <button><FaLongArrowAltRight onClick={() => {if(skills.length===20) setPage(page + 1)}} /></button>
         </div>
+      </div>
+      <div className='skills-container'>
+        {skills.map(skill => (
+          <Skills key={skill.id} skill={skill} />
+        ))}
       </div>
     </div>
   );

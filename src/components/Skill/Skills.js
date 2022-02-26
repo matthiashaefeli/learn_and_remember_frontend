@@ -6,9 +6,12 @@ class Skill extends Component {
   render() {
     const { title, language, user, id } = this.props.skill;
     return (
-      <div className='skill-list-item'>
-        <Link to={'/skills/' + id}>
-          {language.label}: {title}
+      <div className='skill-container'>
+        <Link to={'/skills/' + id} className='skill-link'>
+          <div className='skill-list-item'>
+            <div>{language.label}</div>
+            <div>{title}</div>
+          </div>
         </Link>
       </div>
     );
