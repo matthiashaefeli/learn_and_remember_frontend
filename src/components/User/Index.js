@@ -27,9 +27,6 @@ function Index () {
 
   return (
     <div>
-      {skills.map(skill => (
-        <Skills key={skill.id} skill={skill} />
-      ))}
       <div className='pagination-container'>
         {AuthService.getCurrentUser() && (
           <div>
@@ -43,6 +40,11 @@ function Index () {
           <button><FaLongArrowAltLeft onClick={() => {if(page>1) setPage(page - 1)}} /></button>
           <button><FaLongArrowAltRight onClick={() => {if(skills.length===20) setPage(page + 1)}} /></button>
         </div>
+      </div>
+      <div className='skills-container'>
+        {skills.map(skill => (
+          <Skills key={skill.id} skill={skill} />
+        ))}
       </div>
     </div>
   );
