@@ -3,6 +3,35 @@ const API_URL = 'http://localhost:3000/graphql';
 const METHOD = 'post';
 
 class SkillService {
+  fetchSkillsByUser(user_id, status, page) {
+    return axios({
+      url: API_URL,
+      method: METHOD,
+      data: {
+        query: `
+        query {
+          fetchSkillsByUser(userId: ${user_id}, status: ${status}, page: ${page}) {
+            id
+            title
+            language {
+              label
+            }
+            status
+          }
+        }
+        `
+      }
+    }).then((result) => {
+      return result.data.data['fetchSkillsByUser']
+    },
+    error => {
+      this.setState({
+        isLoaded: true,
+        error
+      })
+    });
+  }
+
   fetchSkillsByStatus(status, page) {
     return axios({
       url: API_URL,
@@ -72,7 +101,7 @@ class SkillService {
         `
       }
     }).then((result) => {
-      (result.data.errors) ? alert(result.data.errors[0].message) : window.location = '/skills';
+      (result.data.errors) ? alert(result.data.errors[0].message) : window.location = '/user';
     })
   }
 
