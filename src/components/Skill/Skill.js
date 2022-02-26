@@ -10,6 +10,7 @@ import CommentService from '../../services/comment_service';
 const Skill = () => {
   const [skill, setSkill] = useState({});
   const { id } = useParams();
+  const user = AuthService.getCurrentUser()
 
   useEffect(() => {
     SkillService.fetchSkill(id).then((response) => {
@@ -18,13 +19,23 @@ const Skill = () => {
   }, []);
 
   function handleSubmit() {
-    const user = AuthService.getCurrentUser()
     const body = escape(document.getElementsByClassName('ProseMirror')[0].innerHTML)
     CommentService.addComment(user.authenticate.token, body, id)
   }
 
+  function handleDelete() {
+    if (window.confirm("Delete the skill?")) {
+      SkillService.deleteSkill(skill.id, user.authenticate.token)
+    }
+  }
+
   return (
     <div>
+      <div>
+        {user && skill?.user?.id == user.user.id && (
+          <button onClick={handleDelete}>Delete Skill</button>
+        )}
+      </div>
       <p>Title: {skill?.title}</p>
       <p>Text:</p>
       <div dangerouslySetInnerHTML={{ __html: unescape(skill?.body) }} />

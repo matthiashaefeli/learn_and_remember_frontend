@@ -121,6 +121,7 @@ class SkillService {
               label
             }
             user {
+              id
               name
               email
               verified
@@ -138,6 +139,29 @@ class SkillService {
       }
     }).then((result) => {
       return result.data.data.fetchSkill
+    })
+  }
+
+  deleteSkill(id, token) {
+    axios({
+      url: API_URL,
+      method: METHOD,
+      data: {
+        query: `
+          mutation {
+            deleteSkill(input: {
+              authenticate: { token: "${token}" },
+              skillId: ${id}
+            })  {
+              skill {
+                id
+              }
+            }
+          }
+        `
+      }
+    }).then((result) => {
+      (result.data.errors) ? alert(result.data.errors[0].message) : window.location = '/user';
     })
   }
 }
