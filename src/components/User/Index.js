@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Skills from '../Skill/Skills';
 import SkillService from '../../services/skill_service';
-import './styles.scss';
 import {
   FaLongArrowAltLeft,
-  FaLongArrowAltRight
+  FaLongArrowAltRight,
+  FaDiceOne
 } from 'react-icons/fa';
 import AuthService from '../../services/auth_service';
 
@@ -36,9 +36,9 @@ function Index () {
         </div>
         )}
         <div className='pagination-arrow'>
-          <button onClick={() => setPage(1)}>First Page</button>
-          <button><FaLongArrowAltLeft onClick={() => {if(page>1) setPage(page - 1)}} /></button>
-          <button><FaLongArrowAltRight onClick={() => {if(skills.length===20) setPage(page + 1)}} /></button>
+        <button className='button-6' onClick={() => setPage(1)}><FaDiceOne /></button>
+          <button className='button-6' onClick={() => {if(page>1) setPage(page - 1)}}><FaLongArrowAltLeft /></button>
+          <button className='button-6' onClick={() => {if(skills.length===20) setPage(page + 1)}}><FaLongArrowAltRight /></button>
         </div>
       </div>
       <div className='skills-container'>

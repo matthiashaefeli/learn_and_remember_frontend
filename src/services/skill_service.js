@@ -66,6 +66,37 @@ class SkillService {
     });
   }
 
+  fetchSkillsByLanguage(language, page) {
+    return axios({
+      url: API_URL,
+      method: METHOD,
+      data: {
+        query: `
+          query {
+            fetchSkillsByLanguage(language: "${language}", page: ${page}) {
+              id
+              title
+              language {
+                label
+              }
+              user {
+                name
+                email
+                verified
+              }
+              status
+            }
+          }
+        `
+      }
+    }).then((result) => {
+      return result.data.data['fetchSkillsByLanguage']
+    },
+    error => {
+      return error
+    });
+  }
+
   addSkill(token, title, language, status, body) {
     axios({
       url: API_URL,
