@@ -16,10 +16,6 @@ class SkillForm extends Component {
       { value: '2', label: 'published'}
     ];
 
-    this.languageOptions = [
-      { value: '0', label: 'ruby' }
-    ]
-
     this.state = {
       title: '',
       language: '',
