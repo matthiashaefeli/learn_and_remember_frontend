@@ -21,19 +21,60 @@ const Skill = () => {
   function handleSubmit() {
     const body = escape(document.getElementsByClassName('ProseMirror')[0].innerHTML)
     CommentService.addComment(user.authenticate.token, body, id)
-  }
+  };
 
   function handleDelete() {
     if (window.confirm("Delete the skill?")) {
       SkillService.deleteSkill(skill.id, user.authenticate.token)
     }
-  }
+  };
+
+  function handleUpdate() {
+    console.log('update')
+  };
+
+  function handleChangeStatus() {
+
+    SkillService.updateSkill(user.authenticate.token,
+                             skill.title,
+                             skill.language.label,
+                             statusValue()[1],
+                             skill.body,
+                             skill.id)
+  };
+
+  function isOwner() {
+    return user && skill?.user?.id === user.user.id
+  };
+
+  function isDraft() {
+    return isOwner() && skill?.status === 'draft'
+  };
+
+  function isNotDraft() {
+    return isOwner() && !isDraft()
+  };
+
+  function statusValue() {
+    console.log(skill.status)
+    if (skill.status === 'published') {
+      return ['Unpublished', 1]
+    } else {
+      return ['Published', 2]
+    }
+  };
 
   return (
     <div>
       <div>
-        {user && skill?.user?.id == user.user.id && (
-          <button onClick={handleDelete}>Delete Skill</button>
+        {isOwner() && (
+          <button onClick={handleDelete} className='button-6'>Delete Skill</button>
+        )}
+        {isDraft() && (
+            <button onClick={handleUpdate} className='button-6'>Update Skill</button>
+        )}
+        {isNotDraft() && (
+            <button onClick={handleChangeStatus} className='button-6'>Make {statusValue()[0]}</button>
         )}
       </div>
       <p>Title: {skill?.title}</p>
