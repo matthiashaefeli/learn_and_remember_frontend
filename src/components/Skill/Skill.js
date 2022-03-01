@@ -6,11 +6,13 @@ import TextEditor from '../TextEditor/TextEditor';
 import './styles.scss';
 import AuthService from '../../services/auth_service';
 import CommentService from '../../services/comment_service';
+import SkillForm from '../Forms/SkillForm';
 
-const Skill = () => {
+function Skill() {
   const [skill, setSkill] = useState({});
   const { id } = useParams();
   const user = AuthService.getCurrentUser()
+  const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
     SkillService.fetchSkill(id).then((response) => {
@@ -30,11 +32,10 @@ const Skill = () => {
   };
 
   function handleUpdate() {
-    console.log('update')
+    setShowForm(true)
   };
 
   function handleChangeStatus() {
-
     SkillService.updateSkill(user.authenticate.token,
                              skill.title,
                              skill.language.label,
@@ -65,37 +66,44 @@ const Skill = () => {
   };
 
   return (
-    <div>
+    <div className='skill'>
       <div>
         {isOwner() && (
           <button onClick={handleDelete} className='button-6'>Delete Skill</button>
         )}
-        {isDraft() && (
+        {!showForm && isDraft() && (
             <button onClick={handleUpdate} className='button-6'>Update Skill</button>
         )}
         {isNotDraft() && (
             <button onClick={handleChangeStatus} className='button-6'>Make {statusValue()[0]}</button>
         )}
       </div>
-      <p>Title: {skill?.title}</p>
-      <p>Text:</p>
-      <div dangerouslySetInnerHTML={{ __html: unescape(skill?.body) }} />
-      <p>Status: {skill?.status}</p>
-      <p>Language: {skill?.language?.label}</p>
-      <p>User: {skill?.user?.name}</p>
-      <p>Comments:</p>
-      <div className='skill-comment-form'>
-        <TextEditor />
-        <button
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
-      </div>
+      {!showForm && (
+        <>
+          <p>Title: {skill?.title}</p>
+          <p>Text:</p>
+          <div dangerouslySetInnerHTML={{ __html: unescape(skill?.body) }} />
+          <p>Status: {skill?.status}</p>
+          <p>Language: {skill?.language?.label}</p>
+          <p>User: {skill?.user?.name}</p>
+          <p>Comments:</p>
+          <div className='skill-comment-form'>
+            <TextEditor />
+            <button
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
+        </>
+      )}
       {skill?.comments?.map(comment => (
         <Comment key={comment.id} comment={comment} />
       ))}
+      {showForm && (
+        <SkillForm create_update='update' skill={skill} />
+      )}
     </div>
   );
 };

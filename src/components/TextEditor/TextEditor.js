@@ -7,15 +7,15 @@ import Link from '@tiptap/extension-link'
 import './styles.scss';
 
 
-export default () => {
+function TextEditor(props) {
+  const { text } = props
   const editor = useEditor({
     extensions: [
       StarterKit,
       Underline,
       Link,
     ],
-    content: `
-    `,
+    content: text,
     editorProps: {
       attributes: {
         class: 'editor-prose',
@@ -34,3 +34,5 @@ export default () => {
     </div>
   )
 }
+
+export default TextEditor
