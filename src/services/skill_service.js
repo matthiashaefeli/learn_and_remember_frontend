@@ -136,6 +136,47 @@ class SkillService {
     })
   }
 
+  updateSkill(token, title, language, status, body, id) {
+    axios({
+      url: API_URL,
+      method: METHOD,
+      data: {
+        query: `
+        mutation {
+          updateSkill(input: {
+              authenticate: {
+                token: "${token}"
+              },
+              params: {
+                id: ${id},
+                title: "${title}",
+                body: "${body}",
+                language: "${language}",
+                status: ${status}
+              }
+            }) {
+              skill {
+              id
+              title
+              status
+              language {
+                label
+              }
+              user {
+                name
+                email
+                verified
+              }
+            }
+          }
+        }
+        `
+      }
+    }).then((result) => {
+      (result.data.errors) ? alert(result.data.errors[0].message) : window.location = '/skills/' + id;
+    })
+  }
+
   fetchSkill = (id) => {
     return axios({
       url: API_URL,
