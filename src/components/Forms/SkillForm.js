@@ -22,16 +22,28 @@ class SkillForm extends Component {
       status: '0',
       languageOptions: [],
       user: {},
-      text: ''
+      text: '',
+
     }
   }
 
   componentDidMount() {
+    const { skill } = this.props
     LanguageService.fetchLanguages();
     this.setState({
       languageOptions: LanguageService.getLanguages(),
-      user: AuthService.getCurrentUser()
-    });
+      user: AuthService.getCurrentUser(),
+    })
+    if (skill) {
+      console.log(unescape(skill.body))
+      this.setState({
+        title: skill.title,
+        language: skill.language,
+        user: skill.user,
+        status: this.statusOptions[0],
+        text: unescape(skill.body),
+      })
+    }
   }
 
   onStatusSelect = (e) => {
@@ -91,7 +103,7 @@ class SkillForm extends Component {
           </label>
           <label>
             <p>Text</p>
-            <TextEditor />
+            <TextEditor text={this.state.text} />
           </label>
           <label>
             <p>Language</p>
@@ -104,9 +116,9 @@ class SkillForm extends Component {
           <label>
             <p>Status</p>
             <Select
-              options={this.statusOptions}
-              onChange={this.onStatusSelect}
               value={this.state.status}
+              onChange={this.onStatusSelect}
+              options={this.statusOptions}
             />
           </label>
           <label>
