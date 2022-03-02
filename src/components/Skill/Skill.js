@@ -38,8 +38,8 @@ function Skill() {
   function handleChangeStatus() {
     SkillService.updateSkill(user.authenticate.token,
                              skill.title,
-                             skill.language.label,
-                             statusValue()[1],
+                             skill.language,
+                             statusValue(),
                              skill.body,
                              skill.id)
   };
@@ -57,11 +57,10 @@ function Skill() {
   };
 
   function statusValue() {
-    console.log(skill.status)
     if (skill.status === 'published') {
-      return ['Unpublished', 1]
+      return {value: 1, label: 'Unpublished'}
     } else {
-      return ['Published', 2]
+      return {value: 2, label: 'Published'}
     }
   };
 
@@ -72,10 +71,10 @@ function Skill() {
           <button onClick={handleDelete} className='button-6'>Delete Skill</button>
         )}
         {!showForm && isDraft() && (
-            <button onClick={handleUpdate} className='button-6'>Update Skill</button>
+          <button onClick={handleUpdate} className='button-6'>Update Skill</button>
         )}
         {isNotDraft() && (
-            <button onClick={handleChangeStatus} className='button-6'>Make {statusValue()[0]}</button>
+          <button onClick={handleChangeStatus} className='button-6'>Make {statusValue().label}</button>
         )}
       </div>
       {!showForm && (
@@ -102,7 +101,7 @@ function Skill() {
         <Comment key={comment.id} comment={comment} />
       ))}
       {showForm && (
-        <SkillForm create_update='update' skill={skill} />
+        <SkillForm create_or_update='update' skill={skill} />
       )}
     </div>
   );

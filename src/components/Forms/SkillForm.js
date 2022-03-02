@@ -23,7 +23,7 @@ class SkillForm extends Component {
       languageOptions: [],
       user: {},
       text: '',
-
+      id: 0,
     }
   }
 
@@ -33,15 +33,15 @@ class SkillForm extends Component {
     this.setState({
       languageOptions: LanguageService.getLanguages(),
       user: AuthService.getCurrentUser(),
+      text: ' '
     })
     if (skill) {
-      console.log(unescape(skill.body))
       this.setState({
         title: skill.title,
         language: skill.language,
-        user: skill.user,
         status: this.statusOptions[0],
         text: unescape(skill.body),
+        id: skill.id,
       })
     }
   }
@@ -70,18 +70,17 @@ class SkillForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { title, language, status, user } = this.state
+    const { title, language, status, user, id } = this.state
     const { authenticate } = user
     const { create_or_update } = this.props
-    const body = escape(document.getElementsByClassName('ProseMirror')[0].innerHTML)
-
-    if(!title || !language || !status || body === '<p><br class="ProseMirror-trailingBreak"></p>') {
+    const body = document.getElementsByClassName('ProseMirror')[0].innerHTML
+    if(!title || !language || !status || body === '<p><br class="ProseMirror-trailingBreak"></p>' || body === '') {
       return
     }
     if(create_or_update === 'create') {
-      SkillService.addSkill(authenticate.token, title, language, status, body)
+      SkillService.addSkill(authenticate.token, title, language, status, escape(body))
     } else if(create_or_update === 'update') {
-
+      SkillService.updateSkill(authenticate.token, title, language, status, escape(body), id)
     }
   }
 
@@ -103,7 +102,9 @@ class SkillForm extends Component {
           </label>
           <label>
             <p>Text</p>
-            <TextEditor text={this.state.text} />
+            {this.state.text && (
+              <TextEditor text={this.state.text} />
+            )}
           </label>
           <label>
             <p>Language</p>

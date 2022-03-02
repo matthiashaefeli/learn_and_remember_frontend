@@ -151,8 +151,8 @@ class SkillService {
                 id: ${id},
                 title: "${title}",
                 body: "${body}",
-                language: "${language}",
-                status: ${status}
+                language: "${language.label}",
+                status: ${status.value}
               }
             }) {
               skill {
