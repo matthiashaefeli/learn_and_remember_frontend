@@ -79,26 +79,29 @@ function Skill() {
       </div>
       {!showForm && (
         <>
+          <p>Language: {skill?.language?.label}</p>
           <p>Title: {skill?.title}</p>
           <p>Text:</p>
           <div dangerouslySetInnerHTML={{ __html: unescape(skill?.body) }} />
-          <p>Status: {skill?.status}</p>
-          <p>Language: {skill?.language?.label}</p>
-          <p>User: {skill?.user?.name}</p>
+          {user && (
+            <p>User: {skill?.user?.name}</p>
+          )}
           <p>Comments:</p>
-          <div className='skill-comment-form'>
-            <TextEditor />
-            <button
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </button>
-          </div>
+          {user && (
+            <div className='skill-comment-form'>
+              <TextEditor />
+              <button
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
+          )}
         </>
       )}
       {skill?.comments?.map(comment => (
-        <Comment key={comment.id} comment={comment} />
+        <Comment key={comment.id} comment={comment} user={user} />
       ))}
       {showForm && (
         <SkillForm create_or_update='update' skill={skill} />
