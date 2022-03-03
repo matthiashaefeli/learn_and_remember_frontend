@@ -1,7 +1,3 @@
-.skill-comment-form {
-  width: 50vw;
-}
-
 .skills-container {
   overflow: auto;
   height: 57vh;
@@ -79,3 +75,26 @@
   transform: translateY(-1px);
 }
 
+.skill-comment-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.skill-comment {
+  padding: 2px;
+  width: 45vw;
+
+}
+
+.skill-comment-form {
+  padding: 2px;
+  width: 45vw;
+  border: 1px solid black;
+}
+
+.skill-comment-comment {
+  padding: 2px;
+  margin: 2px;
+  border: 1px solid red;
+}
