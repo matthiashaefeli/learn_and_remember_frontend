@@ -41,6 +41,7 @@ class Navbar extends Component {
             <>
               <Link to="/user"> My Skills |</Link>
               <Link to="/addSkill"> Add Skill |</Link>
+              <Link to="/settings"> Settings |</Link>
               <Link to="/" onClick={this.logOut}> Logout</Link>
             </>
           )}
