@@ -44,6 +44,10 @@ function Skill() {
                              skill.id)
   };
 
+  function handleCancel() {
+    setShowForm(false)
+  }
+
   function isOwner() {
     return user && skill?.user?.id === user.user.id
   };
@@ -76,16 +80,23 @@ function Skill() {
         {isNotDraft() && (
           <button onClick={handleChangeStatus} className='button-6'>Make {statusValue().label}</button>
         )}
+        {showForm && (
+          <button onClick={handleCancel} className='button-6'>Cancel</button>
+        )}
       </div>
       {!showForm && (
-        <>
+        <div>
+          <p>Language: {skill?.language?.label}</p>
           <p>Title: {skill?.title}</p>
           <p>Text:</p>
           <div dangerouslySetInnerHTML={{ __html: unescape(skill?.body) }} />
-          <p>Status: {skill?.status}</p>
-          <p>Language: {skill?.language?.label}</p>
-          <p>User: {skill?.user?.name}</p>
-          <p>Comments:</p>
+          {user && (
+            <p>User: {skill?.user?.name}</p>
+          )}
+        </div>
+      )}
+      <div className='skill-comment-container'>
+        {user && (
           <div className='skill-comment-form'>
             <TextEditor />
             <button
@@ -95,11 +106,14 @@ function Skill() {
               Submit
             </button>
           </div>
-        </>
-      )}
-      {skill?.comments?.map(comment => (
-        <Comment key={comment.id} comment={comment} />
-      ))}
+        )}
+        <div className='skill-comment'>
+          <p>Comments:</p>
+          {skill?.comments?.map(comment => (
+            <Comment key={comment.id} comment={comment} user={user} />
+          ))}
+        </div>
+      </div>
       {showForm && (
         <SkillForm create_or_update='update' skill={skill} />
       )}

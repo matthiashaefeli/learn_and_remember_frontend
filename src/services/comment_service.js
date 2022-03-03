@@ -16,6 +16,7 @@ class CommentService {
                         skillId: ${skill_id} }
             }) {
               comment {
+                id
                 body
                 skill {
                   title
