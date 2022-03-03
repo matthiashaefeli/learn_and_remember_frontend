@@ -11,6 +11,7 @@ import Index from '../Skill/Index';
 import AddSkill from '../Skill/AddSkill';
 import Skill from '../Skill/Skill';
 import User from '../User/Index';
+import Settings from '../Settings/Settings';
 
 const App = () => {
   return(
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/skills/:id" element={<Skill />} />
         <Route path="/addSkill" element={<AddSkill />} />
         <Route path="/user" element={<User />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </>
   )
