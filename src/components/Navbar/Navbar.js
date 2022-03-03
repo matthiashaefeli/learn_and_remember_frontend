@@ -39,7 +39,7 @@ class Navbar extends Component {
           <Link to="/skills"> {currentUser ? 'Public Skills' : 'Skills'} |</Link>
           {currentUser && (
             <>
-              <Link to="/user"> {currentUser.user.name} Skills |</Link>
+              <Link to="/user"> My Skills |</Link>
               <Link to="/addSkill"> Add Skill |</Link>
               <Link to="/" onClick={this.logOut}> Logout</Link>
             </>

@@ -70,7 +70,7 @@ function Skill() {
 
   return (
     <div className='skill'>
-      <div>
+      <div className='skill-buttons'>
         {isOwner() && (
           <button onClick={handleDelete} className='button-6'>Delete Skill</button>
         )}
@@ -85,17 +85,19 @@ function Skill() {
         )}
       </div>
       {!showForm && (
-        <div>
+        <div className='skill-body-container'>
+          <h2>{skill?.title}</h2>
           <p>Language: {skill?.language?.label}</p>
-          <p>Title: {skill?.title}</p>
+          {user && (
+            <p>Learned by: {skill?.user?.name}</p>
+          )}
+          <hr/>
           <p>Text:</p>
           <div dangerouslySetInnerHTML={{ __html: unescape(skill?.body) }} />
-          {user && (
-            <p>User: {skill?.user?.name}</p>
-          )}
+          <hr/>
         </div>
       )}
-      <div className='skill-comment-container'>
+      {!showForm && (<div className='skill-comment-container'>
         {user && (
           <div className='skill-comment-form'>
             <TextEditor />
@@ -107,15 +109,17 @@ function Skill() {
             </button>
           </div>
         )}
-        <div className='skill-comment'>
+        {skill?.comments?.length > 0 && (<div className='skill-comment'>
           <p>Comments:</p>
           {skill?.comments?.map(comment => (
             <Comment key={comment.id} comment={comment} user={user} />
           ))}
-        </div>
-      </div>
+        </div>)}
+      </div>)}
       {showForm && (
-        <SkillForm create_or_update='update' skill={skill} />
+        <div className='update-skill-form'>
+          <SkillForm create_or_update='update' skill={skill} />
+        </div>
       )}
     </div>
   );
