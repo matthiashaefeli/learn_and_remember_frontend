@@ -1,38 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import AuthService from '../../services/auth_service';
 import SettingService from '../../services/setting_service';
+import './styles.scss';
 
 function Settings() {
-  const [firstMonth, setFirstMonth] = useState('')
-  const [fiveMonth, setfiveMonth] = useState('')
-  const [year, setYear] = useState('')
+  const [firstMonth, setFirstMonth] = useState(false)
+  const [fiveMonth, setFiveMonth] = useState(false)
+  const [year, setYear] = useState(false)
+  const [user, setUser] = useState(AuthService.getCurrentUser())
 
   useEffect(() => {
-    const userId = AuthService.getCurrentUserId();
-    SettingService.fetchUserSettings(userId).then((response) => {
+    SettingService.fetchUserSettings(user.user.id).then((response) => {
       setFirstMonth(response[0].firstMonth)
-      setfiveMonth(response[0].fiveMonth)
+      setFiveMonth(response[0].fiveMonth)
       setYear(response[0].year)
     })
   },[])
 
-function handleChange() {
+  useEffect(() => {
+    SettingService.createOrUpdateUserSetting(user.authenticate.token, firstMonth, fiveMonth, year)
+  }, [firstMonth, fiveMonth, year])
 
+
+
+function handleChange(e) {
+  switch(e.target.name) {
+    case 'FirstMonth': setFirstMonth(!firstMonth); break;
+    case 'FiveMonth': setFiveMonth(!fiveMonth); break;
+    case 'Year': setYear(!year); break;
+  }
 }
 
   return(
-    <div>
+    <div className='settings-container'>
+      <h2>My Email reminder settings</h2>
       <div>
         <label>Send Email after 1 Month:</label>
         <input
+            name='FirstMonth'
             type="checkbox"
             checked={firstMonth}
-            onChange={handleChange}
+            onChange={handleChange.bind(this)}
           />
       </div>
       <div>
         <label>Send Email after 5 Months:</label>
         <input
+            name='FiveMonth'
             type="checkbox"
             checked={fiveMonth}
             onChange={handleChange}
@@ -41,6 +55,7 @@ function handleChange() {
       <div>
         <label>Send Email every Year:</label>
         <input
+            name='Year'
             type="checkbox"
             checked={year}
             onChange={handleChange}

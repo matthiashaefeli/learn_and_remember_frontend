@@ -30,6 +30,43 @@ class SettingService {
     error => {
     });
   }
+
+  createOrUpdateUserSetting(token, first_month, five_month, year) {
+    return axios({
+      url: API_URL,
+      method: METHOD,
+      data: {
+        query: `
+          mutation {
+            createOrUpdateUserSetting(input: {
+                authenticate: {
+                  token: "${token}"
+                },
+                params: {
+                  firstMonth: ${first_month},
+                  fiveMonth: ${five_month},
+                  year: ${year}
+                }
+            }) {
+              setting {
+                id
+                firstMonth
+                fiveMonth
+                year
+                user {
+                  id
+                  name
+                  email
+                  verified
+                }
+              }
+            }
+          }
+        `
+      }
+    }).then((result) => {
+    })
+  }
 }
 
 export default new SettingService();
