@@ -7,7 +7,7 @@ class Home extends Component {
       <div className='home-container'>
         You don't remember what you learned one month ago?<br/>
         five months ago, one year ago or even more?<br/>
-        With Learn and Remember you can save what you learned,<br/>
+        With Easy Remind Me you can save what you learned,<br/>
         and in your custom selected time, you will receive an email with your notes.<br/>
         Brush up on what you learned a while ago, or just enjoy how far you've come in your learning experience.<br/>
       </div>

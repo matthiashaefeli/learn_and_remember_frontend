@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, ReactDOM } from 'react';
 import {
   Routes,
   Route
@@ -14,6 +14,10 @@ import User from '../User/Index';
 import Settings from '../Settings/Settings';
 
 const App = () => {
+  useEffect(() => {
+    document.title = "Easy Remind Me"
+  }, [])
+
   return(
     <>
       <Navbar />

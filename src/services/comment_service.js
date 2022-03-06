@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:3000/graphql';
+const API_URL = 'https://easyremindme.herokuapp.com/graphql';
 const METHOD = 'post';
 
 class CommentService {
