@@ -26,7 +26,7 @@ class Navbar extends Component {
     return (
       <div className='nav-container'>
         <div className='nav-title'>
-          <h1>Learn And Remember</h1>
+          <h1>Easy Remind Me</h1>
         </div>
         <div className='nav-bar'>
           {!currentUser && (
