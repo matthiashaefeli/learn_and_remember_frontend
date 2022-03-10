@@ -18,7 +18,7 @@ function Skill() {
     SkillService.fetchSkill(id).then((response) => {
       setSkill(response)
     })
-  }, []);
+  }, [id]);
 
   function handleSubmit() {
     const body = escape(document.getElementsByClassName('ProseMirror')[0].innerHTML)

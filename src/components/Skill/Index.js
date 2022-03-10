@@ -8,7 +8,6 @@ import {
   FaDiceOne
 } from 'react-icons/fa';
 import LanguageService from '../../services/language_service';
-import AuthService from '../../services/auth_service';
 import Select from 'react-select';
 
 function Index () {
