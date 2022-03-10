@@ -1,4 +1,4 @@
-import React, { useEffect, ReactDOM } from 'react';
+import React, { useEffect } from 'react';
 import {
   Routes,
   Route

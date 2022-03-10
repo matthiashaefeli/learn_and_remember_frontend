@@ -15,11 +15,11 @@ function Settings() {
       setFiveMonth(response[0].fiveMonth)
       setYear(response[0].year)
     })
-  },[])
+  },[user.user.id])
 
   useEffect(() => {
     SettingService.createOrUpdateUserSetting(user.authenticate.token, firstMonth, fiveMonth, year)
-  }, [firstMonth, fiveMonth, year])
+  }, [user.authenticate.token, firstMonth, fiveMonth, year])
 
 
 
@@ -28,6 +28,7 @@ function handleChange(e) {
     case 'FirstMonth': setFirstMonth(!firstMonth); break;
     case 'FiveMonth': setFiveMonth(!fiveMonth); break;
     case 'Year': setYear(!year); break;
+    default: console.log('Empty action received.'); break;
   }
 }
 
