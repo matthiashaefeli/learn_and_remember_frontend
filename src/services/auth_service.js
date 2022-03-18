@@ -2,6 +2,28 @@ import axios from 'axios';
 const API_URL = 'https://easyremindme.herokuapp.com/graphql';
 
 class AuthService {
+  verifyAccount(id) {
+    axios({
+      url: API_URL,
+      method: 'post',
+      data: {
+        query: `
+          mutation {
+              verifyUser(input: { params: {
+                verifyId: "${id}"}}) {
+                message
+              }
+          }
+        `
+      }
+    }).then((result) => {
+      if(result.data.errors) {
+        alert("This is not going to work like that!")
+      } else {
+        window.location = '/'
+      }
+    })
+  }
   register(name, email, password) {
     axios({
       url: API_URL,
@@ -19,7 +41,7 @@ class AuthService {
         `
       }
     }).then((result) => {
-      (result.data.errors) ? alert(result.data.errors[0].message) : alert("Pleae check you email inbox, and verify email");
+      (result.data.errors) ? alert("This is not going to work like that") : alert("Pleae check you email inbox, and verify email");
     })
   }
   login(name, email, password) {

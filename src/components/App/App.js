@@ -12,6 +12,7 @@ import AddSkill from '../Skill/AddSkill';
 import Skill from '../Skill/Skill';
 import User from '../User/Index';
 import Settings from '../Settings/Settings';
+import Verify from '../Verify/Verify';
 
 const App = () => {
   useEffect(() => {
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/addSkill" element={<AddSkill />} />
         <Route path="/user" element={<User />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path ="/verify/:id" element={<Verify />} />
       </Routes>
     </>
   )
