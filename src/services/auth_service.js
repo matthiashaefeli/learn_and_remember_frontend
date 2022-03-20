@@ -20,7 +20,7 @@ class AuthService {
       if(result.data.errors) {
         alert("This is not going to work like that!")
       } else {
-        window.location = '/'
+        window.location = '/signin'
       }
     })
   }
