@@ -51,7 +51,7 @@ function Index () {
           value={language}
           onChange={onLanguageSelect}
           options={languageOptions}
-          placeholder={language || 'Filter Language...'}
+          placeholder={language || 'Filter Language/Topic...'}
         />
         <div className='pagination-arrow'>
           <button className='button-6' onClick={() => setPage(1)}><FaDiceOne /></button>

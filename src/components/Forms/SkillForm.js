@@ -107,7 +107,7 @@ class SkillForm extends Component {
             )}
           </label>
           <label>
-            <p>Language</p>
+            <p>Language/Topic</p>
             <Select
               value={this.state.language}
               onChange={this.onLanguageSelect}
