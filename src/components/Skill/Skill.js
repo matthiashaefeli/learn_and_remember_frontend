@@ -87,12 +87,11 @@ function Skill() {
       {!showForm && (
         <div className='skill-body-container'>
           <h2>{skill?.title}</h2>
-          <p>Language: {skill?.language?.label}</p>
+          <p>Language/Topic: {skill?.language?.label}</p>
           {user && (
             <p>Learned by: {skill?.user?.name}</p>
           )}
           <hr/>
-          <p>Text:</p>
           <div dangerouslySetInnerHTML={{ __html: unescape(skill?.body) }} />
           <hr/>
         </div>
