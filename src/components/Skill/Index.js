@@ -30,8 +30,8 @@ function Index () {
   }, [language, page])
 
   useEffect(() => {
-    LanguageService.fetchLanguages();
-    setLanguageOptions(LanguageService.getLanguages())
+    LanguageService.fetchLanguagesBySkill();
+    setLanguageOptions(LanguageService.getLanguagesBySkill())
   },[])
 
   function onLanguageSelect(event) {
