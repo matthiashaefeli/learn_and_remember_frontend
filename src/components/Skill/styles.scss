@@ -4,7 +4,7 @@
 }
 
 .skill-container {
-  width: 40vw;
+  width: 50vw;
   margin: auto;
 }
 
@@ -33,7 +33,7 @@
 .pagination-container {
   display: flex;
   flex-direction: column;
-  width: 40vw;
+  width: 50vw;
   padding-bottom: 2em;
   margin: auto;
   text-align: center;
@@ -119,4 +119,27 @@
 .update-skill-form {
   width: 80vw;
   margin: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .skill-container {
+    width: 90vw;
+    margin: auto;
+  }
+
+  .pagination-container {
+    width: 90vw;
+  }
+}
+
+
+@media only screen and (max-width: 800px) {
+  .skill-container {
+    width: 70vw;
+    margin: auto;
+  }
+
+  .pagination-container {
+    width: 70vw;
+  }
 }
